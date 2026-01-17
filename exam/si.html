@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pastel Sign Up</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(
+        120deg,
+        #fce1ec,
+        #fdebd3,
+        #e8f8f5,
+        #eaf2ff,
+        #f3e8ff
+      );
+      background-size: 300% 300%;
+      animation: softMove 10s ease infinite;
+    }
+
+    @keyframes softMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .signup-box {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(14px);
+      padding: 35px;
+      width: 380px;
+      border-radius: 18px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .signup-box:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 22px 45px rgba(0,0,0,0.15);
+    }
+
+    h2 {
+      color: #555;
+      margin-bottom: 22px;
+      font-weight: 600;
+    }
+
+    .input-box {
+      margin-bottom: 15px;
+    }
+
+    .input-box input {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      outline: none;
+      font-size: 14px;
+      background: #fff;
+      transition: 0.3s;
+    }
+
+    .input-box input:focus {
+      border-color: #bfa5ff;
+      box-shadow: 0 0 8px rgba(191,165,255,0.4);
+    }
+
+    .signup-btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 30px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      color: #555;
+      background: linear-gradient(
+        90deg,
+        #f6c1d1,
+        #f9d9b7,
+        #cdeee9,
+        #d6e4ff,
+        #e6d9ff
+      );
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .signup-btn:hover {
+      transform: scale(1.04);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .extra {
+      margin-top: 16px;
+      font-size: 13px;
+      color: #666;
+    }
+
+    .extra a {
+      color: #8b6cff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .extra a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="signup-box">
+    <h2>Create Account 🌸</h2>
+
+    <div class="input-box">
+      <input type="text" placeholder="Full Name" required>
+    </div>
+
+    <div class="input-box">
+      <input type="email" placeholder="Email Address" required>
+    </div>
+
+    <div class="input-box">
+      <input type="password" placeholder="Password" required>
+    </div>
+
+    <div class="input-box">
+      <input type="password" placeholder="Confirm Password" required>
+    </div>
+
+    <button class="signup-btn">Sign Up</button>
+
+    <div class="extra">
+      <p>Already have an account? <a href="login.html">Login</a></p>
+    </div>
+  </div>
+
+</body>
+</html>

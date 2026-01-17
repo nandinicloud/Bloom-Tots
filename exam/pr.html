@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Child Profile</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+        90deg,
+        #f6c1d1,
+        #f9d9b7,
+        #cdeee9,
+        #d6e4ff,
+        #e6d9ff
+      );
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  /* background-size: 300% 300%;
+  animation: darkMove 12s ease infinite; */
+  font-family: "Poppins", sans-serif;
+}
+
+@keyframes darkMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+.profile-card {
+  width: 450px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(16px);
+  padding: 30px;
+  border-radius: 22px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.45);
+}
+
+.avatar-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: auto;
+  margin-bottom: 15px;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f6c1d1, #cdb4ff, #bde0fe);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  color: #333;
+  overflow: hidden;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.upload-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: #000000aa;
+  color: white;
+  padding: 6px 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+h2 {
+  text-align: center;
+  margin: 10px 0 20px;
+}
+
+.section-title {
+  font-size: 14px;
+  margin: 18px 0 8px;
+  color: #cdb4ff;
+}
+
+.input-group {
+  margin-bottom: 12px;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 13px;
+}
+
+textarea {
+  resize: none;
+}
+
+.btn {
+  margin-top: 15px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background: linear-gradient(90deg, #f6c1d1, #cdb4ff, #bde0fe);
+  color: #222;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+</style>
+</head>
+
+<body>
+
+<div class="profile-card">
+
+  <!-- Profile Photo -->
+  <div class="avatar-wrapper">
+    <div class="avatar" id="avatar">C</div>
+    <label for="upload" class="upload-btn">📷</label>
+    <input type="file" id="upload" accept="image/*">
+  </div>
+
+  <h2>Child Profile</h2>
+
+  <!-- Child Details -->
+  <div class="section-title">Child Information</div>
+
+  <div class="input-group">
+    <input type="text" placeholder="Child's Full Name">
+  </div>
+
+  <div class="input-group">
+    <input type="number" placeholder="Age">
+  </div>
+
+  <div class="input-group">
+    <select>
+      <option>Gender</option>
+      <option>Male</option>
+      <option>Female</option>
+      <option>Prefer not to say</option>
+    </select>
+  </div>
+
+  <!-- Parent / Guardian -->
+  <div class="section-title">Parent / Guardian</div>
+
+  <div class="input-group">
+    <input type="text" placeholder="Parent / Guardian Name">
+  </div>
+
+  <div class="input-group">
+    <input type="tel" placeholder="Contact Number">
+  </div>
+
+  <div class="input-group">
+    <input type="email" placeholder="Email Address">
+  </div>
+
+  <!-- Psychological Concerns -->
+  <div class="section-title">Concerns (Optional)</div>
+
+  <div class="input-group">
+    <textarea rows="3" placeholder="Behavior concerns, emotions, learning issues, anxiety, etc."></textarea>
+  </div>
+
+  <div class="input-group">
+    <textarea rows="3" placeholder="Any medical history or special needs (optional)"></textarea>
+  </div>
+
+  <button class="btn">Save Profile</button>
+
+</div>
+
+<script>
+const upload = document.getElementById("upload");
+const avatar = document.getElementById("avatar");
+
+upload.addEventListener("change", function() {
+  const file = this.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function() {
+    avatar.innerHTML = `<img src="${reader.result}">`;
+  };
+  reader.readAsDataURL(file);
+});
+</script>
+
+</body>
+</html>
