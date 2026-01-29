@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us – Child Psychology Care</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins",sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background: linear-gradient(135deg,#fde2e4,#e0e7ff,#e8faff,#fff1e6);
+  background-size:300% 300%;
+  animation: softMove 12s ease infinite;
+  color:#444;
+}
+
+@keyframes softMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+.about-container{
+  max-width:1000px;
+  margin:40px auto;
+  padding:20px;
+}
+
+.about-box{
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(14px);
+  border-radius:26px;
+  padding:35px;
+  margin-bottom:30px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.12);
+}
+
+.about-box h1,
+.about-box h2{
+  color:#6d5dfc;
+  margin-bottom:16px;
+}
+
+.about-box p{
+  font-size:15px;
+  line-height:1.8;
+  margin-bottom:14px;
+}
+
+/* VALUES */
+.values{
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;
+}
+
+.value-card{
+  background:#ffffff;
+  padding:22px;
+  border-radius:20px;
+  box-shadow:0 12px 30px rgba(0,0,0,0.08);
+}
+
+.value-card h3{
+  color:#5a4dfc;
+  margin-bottom:10px;
+  font-size:16px;
+}
+
+/* TEAM */
+.team{
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+.team-card{
+  background:#ffffff;
+  padding:22px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 12px 30px rgba(0,0,0,0.08);
+}
+
+.team-card img{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  object-fit:cover;
+  margin-bottom:12px;
+  border:3px solid #cdb4ff;
+}
+
+.team-card h4{
+  margin-bottom:6px;
+  color:#333;
+}
+
+.team-card span{
+  font-size:13px;
+  color:#777;
+}
+</style>
+</head>
+
+<body>
+
+<div class="about-container">
+
+  <!-- INTRO -->
+  <div class="about-box">
+    <h1>About Us</h1>
+    <p>
+      We are a dedicated child psychology support platform committed to nurturing
+      the emotional, social, and cognitive well-being of children. Our goal is to
+      create a safe, understanding, and compassionate space where children and
+      families feel heard, supported, and guided.
+    </p>
+    <p>
+      Childhood is a critical stage of development. Emotional challenges during
+      this phase can affect learning, relationships, and self-confidence. We
+      believe that early understanding and care can create a strong foundation
+      for lifelong mental well-being.
+    </p>
+  </div>
+
+  <!-- MISSION -->
+  <div class="about-box">
+    <h2>Our Mission</h2>
+    <p>
+      Our mission is to empower parents and caregivers with reliable guidance and
+      professional support to help children grow emotionally resilient, confident,
+      and healthy.
+    </p>
+    <p>
+      We aim to reduce stigma around child mental health by providing accessible,
+      empathetic, and science-informed psychological support.
+    </p>
+  </div>
+
+  <!-- WHAT WE DO -->
+  <div class="about-box">
+    <h2>What We Do</h2>
+    <p>
+      We offer child-focused psychological guidance that addresses emotional
+      challenges such as anxiety, behavioral concerns, learning difficulties,
+      social struggles, and emotional regulation.
+    </p>
+    <p>
+      Our platform also provides parents with practical strategies, educational
+      resources, and professional insights to better understand and support their
+      child’s emotional needs.
+    </p>
+  </div>
+
+  <!-- VALUES -->
+  <div class="about-box">
+    <h2>Our Core Values</h2>
+    <div class="values">
+      <div class="value-card">
+        <h3>🌱 Compassion</h3>
+        <p>
+          We approach every child and family with empathy, respect, and kindness.
+        </p>
+      </div>
+      <div class="value-card">
+        <h3>🔒 Trust & Privacy</h3>
+        <p>
+          We maintain strict confidentiality and prioritize the safety of personal
+          information.
+        </p>
+      </div>
+      <div class="value-card">
+        <h3>📘 Evidence-Based Care</h3>
+        <p>
+          Our guidance is grounded in psychological research and best practices.
+        </p>
+      </div>
+      <div class="value-card">
+        <h3>🤝 Family-Centered</h3>
+        <p>
+          We believe parents and caregivers play a key role in a child’s emotional
+          development.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEAM -->
+  <div class="about-box">
+    <h2>Our Team</h2>
+    <p>
+      Our team consists of trained child psychology professionals, counselors,
+      educators, and technology experts working together to create a child-friendly
+      and ethical support system.
+    </p>
+
+    <div class="team">
+      <div class="team-card">
+        <img src="https://via.placeholder.com/150" alt="Psychologist">
+        <h4>Child Psychologist</h4>
+        <span>Emotional & Behavioral Care</span>
+      </div>
+      <div class="team-card">
+        <img src="https://via.placeholder.com/150" alt="Counselor">
+        <h4>Family Counselor</h4>
+        <span>Parent & Child Guidance</span>
+      </div>
+      <div class="team-card">
+        <img src="https://via.placeholder.com/150" alt="Educator">
+        <h4>Child Educator</h4>
+        <span>Learning & Development</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="about-box">
+    <h2>Important Note</h2>
+    <p>
+      This platform provides general psychological guidance and educational
+      information. It does not replace professional diagnosis or in-person therapy.
+      For serious concerns, we encourage seeking support from licensed mental
+      health professionals.
+    </p>
+  </div>
+
+</div>
+
+</body>
+</html>
