@@ -21,6 +21,45 @@ body{
   color:#444;
 }
 
+/* NAVBAR */
+.navbar{
+  width:100%;
+  padding:18px 40px;
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(255,255,255,0.7);
+  backdrop-filter:blur(14px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 8px 25px rgba(0,0,0,0.08);
+}
+
+.navbar h2{
+  color:#6d5dfc;
+  font-weight:600;
+}
+
+.navbar ul{
+  list-style:none;
+  display:flex;
+  gap:30px;
+}
+
+.navbar ul li a{
+  text-decoration:none;
+  color:#444;
+  font-size:15px;
+  font-weight:500;
+  transition:0.3s;
+}
+
+.navbar ul li a:hover{
+  color:#6d5dfc;
+}
+
+/* BACKGROUND ANIMATION */
 @keyframes softMove{
   0%{background-position:0% 50%;}
   50%{background-position:100% 50%;}
@@ -120,6 +159,16 @@ body{
 </head>
 
 <body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <h2>ChildCare</h2>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
 
 <div class="contact-container">
 

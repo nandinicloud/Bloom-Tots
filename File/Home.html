@@ -3,41 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Child Psychology</title>
+
     <style>
-  .box {
-    width: 100%;
-    height: 1000px;
-    border: 2px red solid;
-    background-color: linen;
-     }
-  .nav {
-    width: 100%;
-    height: 90px;
-    border: 2px black solid;
-  }
-  .box2 {
-    width: 100%;
-    height: 300px;
-    border: 2px blue solid;
-  }
-  .box3 {
-        width: 100%;
-        height: 300px;
-      border: 2px green solid;
-  }
-  .box4 {
-    width: 100%;
-    height: 300px;
-    border: 2px yellow solid;
-  }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #fff1f1;
+        }
+
+        /* NAVBAR */
+        .nav {
+            height: 80px;
+            background-color: #f4b6b6;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #7a1f1f;
+        }
+
+        .nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav ul li {
+            cursor: pointer;
+            color: #7a1f1f;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav ul li:hover {
+            color: #ffffff;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 300px;
+            background: linear-gradient(to right, #ffd6d6, #ffeaea);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            color: #7a1f1f;
+        }
+
+        .hero p {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #5a2a2a;
+        }
+
+        /* QUIZ SECTION */
+        .quiz-section {
+            height: 280px;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .quiz-card {
+            width: 70%;
+            background-color: #ffe3e3;
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            transition: transform 0.4s ease;
+        }
+
+        .quiz-card:hover {
+            transform: scale(1.03);
+        }
+
+        .quiz-card h2 {
+            color: #7a1f1f;
+            margin-bottom: 10px;
+        }
+
+        .quiz-card button {
+            margin-top: 15px;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 20px;
+            background-color: #f4b6b6;
+            color: #7a1f1f;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .quiz-card button:hover {
+            background-color: #e89a9a;
+        }
+
+        /* INFO SECTION */
+        .info {
+            height: 300px;
+            background-color: #fff6f6;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .info h2 {
+            color: #7a1f1f;
+            margin-bottom: 15px;
+        }
+
+        .info p {
+            font-size: 17px;
+            color: #5a2a2a;
+            line-height: 1.6;
+        }
+
+        /* FOOTER */
+        footer {
+            height: 100px;
+            background-color: #f4b6b6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7a1f1f;
+        }
     </style>
 </head>
+
 <body>
-<div class="box">
-         <div class="nav">box1</div>
-        <div class="box2">box2</div> 
-        <div class="box3">box3</div>
-</div>
+
+    <!-- NAVBAR -->
+    <div class="nav">
+        <div class="logo">MindBloom 🌸</div>
+        <ul>
+            <li>Home</li>
+            <li>Quiz</li>
+            <li>Contact</li>
+            <li>Login</li>
+            <li>Signup</li>
+        </ul>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div>
+            <h1>Understanding Little Minds</h1>
+            <p>Helping children grow emotionally, mentally & happily</p>
+        </div>
+    </div>
+
+    <!-- QUIZ -->
+    <div class="quiz-section">
+        <div class="quiz-card">
+            <h2>Child Emotion Quiz</h2>
+            <p>Understand your child’s behavior with a short, friendly quiz.</p>
+            <button>Start Quiz</button>
+        </div>
+    </div>
+
+    <!-- INFORMATION -->
+    <div class="info">
+        <h2>Why Child Psychology Matters</h2>
+        <p>
+            Child psychology focuses on understanding emotional, cognitive,
+            and social development. Early guidance helps children build
+            confidence, manage emotions, and develop healthy relationships.
+        </p>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        © 2026 MindBloom | Caring for young minds 💗
+    </footer>
+
 </body>
 </html>
