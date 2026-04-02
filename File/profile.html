@@ -19,18 +19,15 @@ body {
   justify-content: center;
   align-items: center;
   background: linear-gradient(
-        90deg,
-        #f6c1d1,
-        #f9d9b7,
-        #cdeee9,
-        #d6e4ff,
-        #e6d9ff
-      );
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-  /* background-size: 300% 300%;
-  animation: darkMove 12s ease infinite; */
-  font-family: "Poppins", sans-serif;
+    90deg,
+    #f6c1d1,
+    #f9d9b7,
+    #cdeee9,
+    #d6e4ff,
+    #e6d9ff
+  );
+  background-size: 300% 300%;
+  animation: darkMove 12s ease infinite;
 }
 
 @keyframes darkMove {
@@ -39,14 +36,22 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-
+/* UPDATED CARD */
 .profile-card {
-  width: 450px;
+  width: 90%;
+  max-width: 520px;
   background: rgba(255,255,255,0.08);
   backdrop-filter: blur(16px);
-  padding: 30px;
+  padding: 40px;
   border-radius: 22px;
   box-shadow: 0 25px 60px rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: 0.3s;
+}
+
+.profile-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
 }
 
 .avatar-wrapper {
@@ -54,7 +59,7 @@ body {
   width: 120px;
   height: 120px;
   margin: auto;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .avatar {
@@ -94,28 +99,34 @@ input[type="file"] {
 
 h2 {
   text-align: center;
-  margin: 10px 0 20px;
+  margin: 10px 0 25px;
 }
 
 .section-title {
   font-size: 14px;
-  margin: 18px 0 8px;
+  margin: 22px 0 10px;
   color: #cdb4ff;
 }
 
 .input-group {
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .input-group input,
 .input-group select,
 .input-group textarea {
   width: 100%;
-  padding: 10px 12px;
+  padding: 12px;
   border-radius: 10px;
   border: none;
   outline: none;
-  font-size: 13px;
+  font-size: 14px;
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus {
+  box-shadow: 0 0 0 2px #cdb4ff;
 }
 
 textarea {
@@ -123,9 +134,9 @@ textarea {
 }
 
 .btn {
-  margin-top: 15px;
+  margin-top: 20px;
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   border-radius: 25px;
   border: none;
   cursor: pointer;
@@ -159,11 +170,11 @@ textarea {
   <div class="section-title">Child Information</div>
 
   <div class="input-group">
-    <input type="text" placeholder="Child's Full Name">
+    <input type="text" id="name" placeholder="Child's Full Name">
   </div>
 
   <div class="input-group">
-    <input type="number" placeholder="Age">
+    <input type="number" id="age" placeholder="Age">
   </div>
 
   <div class="input-group">
@@ -179,7 +190,7 @@ textarea {
   <div class="section-title">Parent / Guardian</div>
 
   <div class="input-group">
-    <input type="text" placeholder="Parent / Guardian Name">
+    <input type="text" id="parent" placeholder="Parent / Guardian Name">
   </div>
 
   <div class="input-group">
@@ -208,7 +219,9 @@ textarea {
 <script>
 const upload = document.getElementById("upload");
 const avatar = document.getElementById("avatar");
+const nameInput = document.getElementById("name");
 
+// Image Upload
 upload.addEventListener("change", function() {
   const file = this.files[0];
   if (!file) return;
@@ -218,6 +231,27 @@ upload.addEventListener("change", function() {
     avatar.innerHTML = `<img src="${reader.result}">`;
   };
   reader.readAsDataURL(file);
+});
+
+// Dynamic Initial
+nameInput.addEventListener("input", function() {
+  if (!avatar.querySelector("img")) {
+    avatar.textContent = this.value.charAt(0).toUpperCase() || "C";
+  }
+});
+
+// Validation + Save
+document.querySelector(".btn").addEventListener("click", function() {
+  const name = document.getElementById("name").value;
+  const age = document.getElementById("age").value;
+  const parent = document.getElementById("parent").value;
+
+  if (!name || !age || !parent) {
+    alert("Please fill all required fields!");
+  } else {
+    localStorage.setItem("childProfile", JSON.stringify({name, age, parent}));
+    alert("Profile Saved Successfully ✅");
+  }
 });
 </script>
 

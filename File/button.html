@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MindBloom Transition</title>
+
+<style>
+:root {
+    --maggi-red: #f84b5a;
+    --maggi-yellow: #f2a9de;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Arial Black', sans-serif;
+    overflow: hidden;
+    background-color: var(--maggi-yellow);
+}
+
+.ad-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.slide {
+    position: absolute;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+    width: 90%;
+    max-width: 900px;
+}
+
+.slide.active {
+    opacity: 1;
+    transform: scale(1.1);
+    pointer-events: auto;
+}
+
+.text-main {
+    color: var(--maggi-red);
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    line-height: 1.1;
+    text-shadow: 3px 3px 0px white;
+}
+
+.sub-text {
+    margin-top: 20px;
+    font-size: 16px;
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* CTA BUTTON */
+.cta-btn{
+    margin-top:30px;
+    padding:14px 30px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(90deg,#f4b6b6,#ffd6d6);
+    color:#7a1f1f;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    transition:0.3s;
+}
+
+.cta-btn:hover{
+    transform:scale(1.05);
+    background:#7a1f1f;
+    color:white;
+}
+
+/* Floating effect */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+.floating {
+    animation: float 2.5s ease-in-out infinite;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+    .text-main{
+        font-size:2rem;
+    }
+    .sub-text{
+        font-size:14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="ad-container">
+
+    <!-- Slide 1 -->
+    <div class="slide active" id="slide1">
+        <h1 class="text-main">WHAT IS<br>CHILD DEVELOPMENT?</h1>
+        <p class="sub-text">
+            Child development refers to how children grow physically, emotionally, socially, 
+            and cognitively over time. It shapes how they think, feel, learn, and interact 
+            with the world around them.
+        </p>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide" id="slide2">
+        <h1 class="text-main">WHY DOES IT<br>MATTER?</h1>
+        <p class="sub-text">
+            Early development plays a crucial role in building confidence, communication skills, 
+            and emotional intelligence. Understanding these stages helps parents guide children 
+            towards a healthy and balanced future.
+        </p>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide" id="slide3">
+        <h1 class="text-main">HOW CAN<br>WE HELP?</h1>
+        <p class="sub-text">
+            MindBloom provides simple, research-based insights to help you understand 
+            your child better and support their emotional and behavioral growth effectively.
+        </p>
+
+        <button class="cta-btn floating">Explore MindBloom</button>
+    </div>
+
+</div>
+
+<script>
+let current = 1;
+const totalSlides = 3;
+
+setInterval(() => {
+    document.getElementById("slide" + current).classList.remove("active");
+    current = current % totalSlides + 1;
+    document.getElementById("slide" + current).classList.add("active");
+}, 3000);
+</script>
+
+</body>
+</html>

@@ -1,196 +1,409 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Child Psychology</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MindBloom | Child Psychology</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
-        }
+<style>
 
-        body {
-            background-color: #fff1f1;
-        }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
 
-        /* NAVBAR */
-        .nav {
-            height: 80px;
-            background-color: #f4b6b6;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 40px;
-        }
+body{
+background:#fff1f1;
+}
 
-        .logo {
-            font-size: 26px;
-            font-weight: bold;
-            color: #7a1f1f;
-        }
+/* NAVBAR */
 
-        .nav ul {
-            list-style: none;
-            display: flex;
-            gap: 25px;
-        }
+.nav{
+height:80px;
+background:#f4b6b6;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 40px;
+}
 
-        .nav ul li {
-            cursor: pointer;
-            color: #7a1f1f;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
+.logo{
+font-size:26px;
+font-weight:bold;
+color:#7a1f1f;
+}
 
-        .nav ul li:hover {
-            color: #ffffff;
-        }
+.nav ul{
+list-style:none;
+display:flex;
+gap:25px;
+}
 
-        /* HERO SECTION */
-        .hero {
-            height: 300px;
-            background: linear-gradient(to right, #ffd6d6, #ffeaea);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-        }
+.nav ul li{
+cursor:pointer;
+color:#7a1f1f;
+font-weight:500;
+}
 
-        .hero h1 {
-            font-size: 36px;
-            color: #7a1f1f;
-        }
+.nav ul li:hover{
+color:white;
+}
 
-        .hero p {
-            margin-top: 10px;
-            font-size: 18px;
-            color: #5a2a2a;
-        }
+/* HERO */
 
-        /* QUIZ SECTION */
-        .quiz-section {
-            height: 280px;
-            background-color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.hero{
+height:420px;
+background-image:url("https://www.verywellmind.com/thmb/FhY7F2-ZFQD3D1MOOCahyppulv8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/child-development-theories-2795068-final-b0d7a20d00274f2cbc51b5d51d2169cd.png");
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+text-align:center;
+color:white;
+}
 
-        .quiz-card {
-            width: 70%;
-            background-color: #ffe3e3;
-            padding: 30px;
-            border-radius: 16px;
-            text-align: center;
-            transition: transform 0.4s ease;
-        }
+.hero::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.45);
+}
 
-        .quiz-card:hover {
-            transform: scale(1.03);
-        }
+.hero-content{
+position:relative;
+z-index:1;
+display:flex;
+flex-direction:column;
+align-items:center;
+}
 
-        .quiz-card h2 {
-            color: #7a1f1f;
-            margin-bottom: 10px;
-        }
+.hero h1{
+font-size:40px;
+margin-bottom:10px;
+}
 
-        .quiz-card button {
-            margin-top: 15px;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 20px;
-            background-color: #f4b6b6;
-            color: #7a1f1f;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+.hero p{
+font-size:18px;
+}
 
-        .quiz-card button:hover {
-            background-color: #e89a9a;
-        }
+.slogan{
+margin-top:15px;
+font-style:italic;
+font-size:20px;
+}
 
-        /* INFO SECTION */
-        .info {
-            height: 300px;
-            background-color: #fff6f6;
-            padding: 40px;
-            text-align: center;
-        }
+/* NEW BUTTON */
 
-        .info h2 {
-            color: #7a1f1f;
-            margin-bottom: 15px;
-        }
+.about-btn{
+margin-top:30px;
+padding:16px 40px;
+border:none;
+border-radius:30px;
+background:linear-gradient(90deg,#ff9a9e,#fad0c4);
+color:#7a1f1f;
+font-size:17px;
+font-weight:600;
+cursor:pointer;
+letter-spacing:0.5px;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+transition:all 0.3s ease;
+}
 
-        .info p {
-            font-size: 17px;
-            color: #5a2a2a;
-            line-height: 1.6;
-        }
+.about-btn:hover{
+transform:translateY(-3px) scale(1.05);
+box-shadow:0 15px 40px rgba(0,0,0,0.4);
+background:linear-gradient(90deg,#f4b6b6,#ffdde1);
+color:#000;
+}
 
-        /* FOOTER */
-        footer {
-            height: 100px;
-            background-color: #f4b6b6;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #7a1f1f;
-        }
-    </style>
+/* QUIZ */
+
+.quiz-section{
+padding:60px;
+display:flex;
+justify-content:center;
+}
+
+.quiz-card{
+width:60%;
+background:#ffe3e3;
+padding:35px;
+border-radius:16px;
+text-align:center;
+}
+
+.quiz-card h2{
+color:#7a1f1f;
+}
+
+.quiz-card button{
+margin-top:20px;
+padding:12px 30px;
+border:none;
+border-radius:20px;
+background:#f4b6b6;
+cursor:pointer;
+}
+
+/* INFO SECTION */
+
+.info{
+padding:60px;
+text-align:center;
+background:#fff6f6;
+}
+
+.info h2{
+color:#7a1f1f;
+margin-bottom:15px;
+}
+
+.info p{
+max-width:800px;
+margin:auto;
+line-height:1.7;
+}
+
+/* IMPORTANCE CARDS */
+
+.importance{
+padding:60px;
+background:white;
+}
+
+.cards{
+display:flex;
+gap:30px;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.card{
+width:260px;
+background:#ffeaea;
+padding:20px;
+border-radius:14px;
+text-align:center;
+}
+
+.card img{
+width:100%;
+border-radius:10px;
+margin-bottom:10px;
+}
+
+.card h3{
+color:#7a1f1f;
+margin-bottom:8px;
+}
+
+/* AWARENESS */
+
+.awareness{
+padding:60px;
+background:#fff6f6;
+text-align:center;
+}
+
+.awareness h2{
+margin-bottom:15px;
+color:#7a1f1f;
+}
+
+/* FOOTER */
+
+.footer{
+background:#ced1ff;
+padding:40px 0 10px 0;
+margin-top:40px;
+font-size: medium;
+}
+
+.footer-container{
+width:85%;
+margin:auto;
+display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+}
+
+.footer h3,.footer h4{
+margin-bottom:10px;
+}
+
+.footer p{
+font-size:14px;
+line-height:1.6;
+}
+
+.footer-links ul{
+list-style:none;
+}
+
+.footer-links li{
+margin-bottom:8px;
+}
+
+.footer-links a{
+color:#ddd;
+text-decoration:none;
+}
+
+.footer-links a:hover{
+color:white;
+}
+
+.footer-bottom{
+text-align:center;
+border-top:1px solid rgba(255,255,255,0.2);
+margin-top:20px;
+padding-top:10px;
+}
+
+</style>
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-    <div class="nav">
-        <div class="logo">MindBloom 🌸</div>
-        <ul>
-            <li>Home</li>
-            <li>Quiz</li>
-            <li>Contact</li>
-            <li>Login</li>
-            <li>Signup</li>
-        </ul>
-    </div>
+<!-- NAVBAR -->
+<div class="nav">
+<div class="logo">MindBloom 🌸</div>
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#">Quiz</a></li>
+<li><a href="#">Contact</a></li>
+<li><a href="#">Login</a></li>
+<li><a href="#">Signup</a></li>
+</ul>
+</div>
 
-    <!-- HERO -->
-    <div class="hero">
-        <div>
-            <h1>Understanding Little Minds</h1>
-            <p>Helping children grow emotionally, mentally & happily</p>
-        </div>
-    </div>
+<!-- HERO -->
 
-    <!-- QUIZ -->
-    <div class="quiz-section">
-        <div class="quiz-card">
-            <h2>Child Emotion Quiz</h2>
-            <p>Understand your child’s behavior with a short, friendly quiz.</p>
-            <button>Start Quiz</button>
-        </div>
-    </div>
+<div class="hero">
+<div class="hero-content">
 
-    <!-- INFORMATION -->
-    <div class="info">
-        <h2>Why Child Psychology Matters</h2>
-        <p>
-            Child psychology focuses on understanding emotional, cognitive,
-            and social development. Early guidance helps children build
-            confidence, manage emotions, and develop healthy relationships.
-        </p>
-    </div>
+<h1>Understanding Little Minds</h1>
 
-    <!-- FOOTER -->
-    <footer>
-        © 2026 MindBloom | Caring for young minds 💗
-    </footer>
+<p>Helping children grow emotionally, mentally & happily</p>
+
+<div class="slogan">
+"Nurturing minds today for a healthier tomorrow"
+</div>
+
+<button class="about-btn">What is MindBloom</button>
+
+</div>
+</div>
+
+<!-- QUIZ -->
+
+<div class="quiz-section">
+<div class="quiz-card">
+<h2>Child Emotion Quiz</h2>
+<p>Take a quick quiz to understand possible early behavioral signs in children.</p>
+<button>Start Quiz</button>
+</div>
+</div>
+
+<!-- INFORMATION -->
+
+<div class="info">
+<h2>Why Child Psychology Matters</h2>
+<p>
+Child psychology studies how children think, feel, and behave as they grow.
+Understanding emotional and cognitive development helps parents and teachers
+support children during their most important learning years. Early awareness
+can help identify challenges like attention difficulties, emotional struggles,
+or social interaction issues so children can receive guidance and support.
+</p>
+</div>
+
+<!-- IMPORTANCE -->
+
+<div class="importance">
+<div class="cards">
+
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAHCOlvzqEYyJVD6cT2DwRDN1f7LCIoZehiA&s">
+<h3>Emotional Development</h3>
+<p>
+Children learn how to manage emotions, express feelings,
+and build confidence.
+</p>
+</div>
+
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Walter_de_Maria_Vertikaler_Erdkilometer.jpg/500px-Walter_de_Maria_Vertikaler_Erdkilometer.jpg">
+<h3>Social Skills</h3>
+<p>
+Understanding child behavior helps build friendships,
+communication skills, and empathy.
+</p>
+</div>
+
+</div>
+</div>
+
+<!-- AWARENESS -->
+
+<div class="awareness">
+<h2>Creating Awareness</h2>
+<p>
+Early awareness of child behavior helps families notice patterns
+in attention, communication, and emotional responses.
+Recognizing these signs early allows parents to guide children
+towards healthy development and seek professional help if needed.
+Every child develops differently, and support can make a big difference.
+</p>
+</div>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+<div class="footer-container">
+
+<div>
+<h3>MindBloom</h3>
+<p>
+Supporting parents and educators in understanding
+children’s emotional and mental development.
+</p>
+</div>
+
+<div class="footer-links">
+<h4>Quick Links</h4>
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#">Quiz</a></li>
+<li><a href="#">Resources</a></li>
+<li><a href="#">Contact</a></li>
+<li><a href="#">Faq</a></li>
+<li><a href="#">privacy</a></li>
+<li><a href="#">profile</a></li>
+<li><a href="#">Service</a></li>
+</ul>
+</div>
+
+<div>
+<h4>Contact</h4>
+<p>Email: support@mindbloom.com</p>
+<p>Phone: +91 90000 00000</p>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+<p>© 2026 MindBloom | Caring for young minds 💗</p>
+</div>
+
+</footer>
 
 </body>
 </html>
