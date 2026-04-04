@@ -1,213 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MindBloom Quiz</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Child Dev Assessment</title>
+    <style>
+        :root {
+            --baby-pink: #fce4ec;
+            --soft-pink: #f8bbd0;
+            --deep-pink: #f06292;
+            --white: #ffffff;
+            --gray: #f5f5f5;
+        }
 
-<style>
-body{
-margin:0;
-font-family:'Segoe UI',sans-serif;
-background:linear-gradient(135deg,#fff1f1,#ffe3e3);
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--baby-pink);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
-/* CARD */
-.quiz-container{
-width:90%;
-max-width:500px;
-background:white;
-padding:30px;
-border-radius:20px;
-box-shadow:0 20px 60px rgba(0,0,0,0.1);
-text-align:center;
-animation:fade 0.4s ease;
-}
+        .quiz-card {
+            background: var(--white);
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(240, 98, 146, 0.15);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-@keyframes fade{
-from{opacity:0; transform:translateY(20px);}
-to{opacity:1; transform:translateY(0);}
-}
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: var(--gray);
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        #progress-bar {
+            width: 25%;
+            height: 100%;
+            background: var(--deep-pink);
+            border-radius: 10px;
+            transition: 0.4s ease;
+        }
 
-h2{
-color:#7a1f1f;
-margin-bottom:20px;
-}
+        .slide { display: none; }
+        .slide.active { display: block; animation: fadeIn 0.5s; }
 
-/* OPTIONS */
-.options button{
-width:100%;
-margin:10px 0;
-padding:12px;
-border:none;
-border-radius:12px;
-background:#ffe3e3;
-cursor:pointer;
-transition:0.3s;
-font-size:14px;
-}
+        h2 { color: var(--deep-pink); font-size: 1.4rem; margin-bottom: 25px; }
 
-.options button:hover{
-background:#f4b6b6;
-transform:scale(1.03);
-}
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
 
-/* NEXT BUTTON */
-.next-btn{
-margin-top:15px;
-padding:10px 25px;
-border:none;
-border-radius:20px;
-background:#7a1f1f;
-color:white;
-cursor:pointer;
-}
+        button {
+            padding: 15px;
+            border: 2px solid var(--soft-pink);
+            background: var(--white);
+            color: var(--deep-pink);
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
 
-/* RESULT */
-.result{
-line-height:1.6;
-color:#333;
-}
+        button:hover {
+            background: var(--soft-pink);
+            color: white;
+        }
 
-.suggestion{
-margin-top:15px;
-padding:15px;
-background:#fff1f1;
-border-radius:12px;
-}
+        #result-screen { display: none; }
 
-/* PROGRESS */
-.progress{
-height:6px;
-background:#eee;
-border-radius:10px;
-margin-bottom:20px;
-overflow:hidden;
-}
-
-.progress-bar{
-height:100%;
-width:0%;
-background:#7a1f1f;
-transition:0.3s;
-}
-</style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="quiz-container">
+<div class="quiz-card">
+    <div class="progress-container">
+        <div id="progress-bar"></div>
+    </div>
 
-<div class="progress">
-<div class="progress-bar" id="progress"></div>
-</div>
+    <div class="slide active" id="s1">
+        <h2>Does the child show "Joint Attention" (pointing to an object just to show you, not because they want it)?</h2>
+        <div class="btn-group">
+            <button onclick="nextSlide(1, 0)">Yes, Frequently</button>
+            <button onclick="nextSlide(1, 2)">Rarely / Never</button>
+        </div>
+    </div>
 
-<h2 id="question">Question</h2>
+    <div class="slide" id="s2">
+        <h2>Can the child follow a two-step instruction (e.g., "Pick up the toy and put it in the box")?</h2>
+        <div class="btn-group">
+            <button onclick="nextSlide(2, 0)">Yes, easily</button>
+            <button onclick="nextSlide(2, 1)">They get distracted mid-way</button>
+        </div>
+    </div>
 
-<div class="options" id="options"></div>
+    <div class="slide" id="s3">
+        <h2>Does the child experience extreme distress during hair cutting, nail clipping, or loud vacuum noises?</h2>
+        <div class="btn-group">
+            <button onclick="nextSlide(3, 1)">Yes, highly sensitive</button>
+            <button onclick="nextSlide(3, 0)">No, they are calm</button>
+        </div>
+    </div>
 
-<button class="next-btn" onclick="nextQuestion()">Next</button>
+    <div class="slide" id="s4">
+        <h2>Has the child ever lost a skill they previously had (like stopping talking or walking)?</h2>
+        <div class="btn-group">
+            <button onclick="showResult(5)">Yes (Regression)</button>
+            <button onclick="showResult(0)">No</button>
+        </div>
+    </div>
 
+    <div id="result-screen">
+        <h2 id="result-title">Analyzing...</h2>
+        <p id="result-text"></p>
+        <button onclick="location.reload()" style="margin-top:20px;">Restart Test</button>
+    </div>
 </div>
 
 <script>
-const quiz = [
-  {
-    question: "How often does the child feel upset?",
-    options: ["Rarely", "Sometimes", "Often"]
-  },
-  {
-    question: "Does the child interact socially?",
-    options: ["Comfortably", "Sometimes hesitant", "Avoids interaction"]
-  },
-  {
-    question: "How is the child’s focus?",
-    options: ["Strong focus", "Moderate", "Easily distracted"]
-  }
-];
+    let totalScore = 0;
+    const totalSlides = 4;
 
-let current = 0;
-let score = 0;
-let selected = null;
+    function nextSlide(currentNum, points) {
+        totalScore += points;
+        
+        // Hide current
+        document.getElementById(`s${currentNum}`).classList.remove('active');
+        
+        // Show next
+        const nextNum = currentNum + 1;
+        document.getElementById(`s${nextNum}`).classList.add('active');
+        
+        // Update Progress
+        document.getElementById('progress-bar').style.width = (nextNum / totalSlides) * 100 + "%";
+    }
 
-function loadQuestion(){
-  const q = quiz[current];
-  document.getElementById("question").innerText = q.question;
+    function showResult(lastPoints) {
+        totalScore += lastPoints;
+        
+        document.getElementById('s4').classList.remove('active');
+        document.getElementById('progress-bar').style.width = "100%";
+        
+        const resultScreen = document.getElementById('result-screen');
+        const title = document.getElementById('result-title');
+        const text = document.getElementById('result-text');
+        
+        resultScreen.style.display = 'block';
 
-  const optionsDiv = document.getElementById("options");
-  optionsDiv.innerHTML = "";
-
-  q.options.forEach((opt, index)=>{
-    const btn = document.createElement("button");
-    btn.innerText = opt;
-
-    btn.onclick = () => {
-      selected = index;
-
-      document.querySelectorAll(".options button").forEach(b => b.style.background="#ffe3e3");
-      btn.style.background="#f4b6b6";
-    };
-
-    optionsDiv.appendChild(btn);
-  });
-
-  updateProgress();
-}
-
-function nextQuestion(){
-  if(selected === null){
-    alert("Please select an option");
-    return;
-  }
-
-  score += selected;
-  selected = null;
-  current++;
-
-  if(current < quiz.length){
-    loadQuestion();
-  } else {
-    showResult();
-  }
-}
-
-function updateProgress(){
-  const percent = ((current)/quiz.length)*100;
-  document.getElementById("progress").style.width = percent + "%";
-}
-
-function showResult(){
-  let result = "";
-  let suggestion = "";
-
-  if(score <= 2){
-    result = "The child shows stable emotional and behavioral patterns.";
-    suggestion = "Continue providing a supportive and nurturing environment.";
-  } 
-  else if(score <= 4){
-    result = "The child may need moderate emotional support.";
-    suggestion = "Encourage open communication and observe behavioral patterns.";
-  } 
-  else {
-    result = "The child may benefit from additional attention and guidance.";
-    suggestion = "Consider structured support and consulting a professional if needed.";
-  }
-
-  localStorage.setItem("mindbloomResult", result);
-
-  document.querySelector(".quiz-container").innerHTML = `
-    <h2>Assessment Result</h2>
-    <div class="result">${result}</div>
-    <div class="suggestion">${suggestion}</div>
-    <button class="next-btn" onclick="location.reload()">Retake Quiz</button>
-  `;
-}
-
-loadQuestion();
+        if (totalScore >= 5) {
+            title.innerText = "Priority Evaluation Needed";
+            text.innerText = "The indicators (specifically regarding regression or social markers) suggest a professional neurodevelopmental screening is highly recommended.";
+            title.style.color = "#d81b60";
+        } else if (totalScore >= 2) {
+            title.innerText = "Observation Recommended";
+            text.innerText = "There are some mild delays or sensory markers. It's best to track these behaviors for another 3 months and consult a counselor.";
+        } else {
+            title.innerText = "Typical Development";
+            text.innerText = "Based on these specific markers, the child appears to be meeting developmental expectations.";
+        }
+    }
 </script>
 
 </body>
