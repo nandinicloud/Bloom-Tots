@@ -1,4 +1,361 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MindBloom Quiz</title>
+
+<style>
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(135deg,#fff1f1,#ffe3e3);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+/* CARD */
+.quiz-container{
+width:90%;
+max-width:500px;
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 20px 60px rgba(0,0,0,0.1);
+text-align:center;
+animation:fade 0.4s ease;
+}
+
+@keyframes fade{
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+h2{
+color:#7a1f1f;
+margin-bottom:20px;
+}
+
+/* OPTIONS */
+.options button{
+width:100%;
+margin:10px 0;
+padding:12px;
+border:none;
+border-radius:12px;
+background:#ffe3e3;
+cursor:pointer;
+transition:0.3s;
+font-size:14px;
+}
+
+.options button:hover{
+background:#f4b6b6;
+transform:scale(1.03);
+}
+
+/* NEXT BUTTON */
+.next-btn{
+margin-top:15px;
+padding:10px 25px;
+border:none;
+border-radius:20px;
+background:#7a1f1f;
+color:white;
+cursor:pointer;
+}
+
+/* RESULT */
+.result{
+line-height:1.6;
+color:#333;
+}
+
+.suggestion{
+margin-top:15px;
+padding:15px;
+background:#fff1f1;
+border-radius:12px;
+}
+
+/* PROGRESS */
+.progress{
+height:6px;
+background:#eee;
+border-radius:10px;
+margin-bottom:20px;
+overflow:hidden;
+}
+
+.progress-bar{
+height:100%;
+width:0%;
+background:#7a1f1f;
+transition:0.3s;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<div class="progress">
+<div class="progress-bar" id="progress"></div>
+</div>
+
+<h2 id="question">Question</h2>
+
+<div class="options" id="options"></div>
+
+<button class="next-btn" onclick="nextQuestion()">Next</button>
+
+</div>
+
+<script>
+const quiz = [
+  {
+    question: "How often does the child feel upset?",
+    options: ["Rarely", "Sometimes", "Often"]
+  },
+  {
+    question: "Does the child interact socially?",
+    options: ["Comfortably", "Sometimes hesitant", "Avoids interaction"]
+  },
+  {
+    question: "How is the child’s focus?",
+    options: ["Strong focus", "Moderate", "Easily distracted"]
+  }
+];
+
+let current = 0;
+let score = 0;
+let selected = null;
+
+function loadQuestion(){
+  const q = quiz[current];
+  document.getElementById("question").innerText = q.question;
+
+  const optionsDiv = document.getElementById("options");
+  optionsDiv.innerHTML = "";
+
+  q.options.forEach((opt, index)=>{
+    const btn = document.createElement("button");
+    btn.innerText = opt;
+
+    btn.onclick = () => {
+      selected = index;
+
+      document.querySelectorAll(".options button").forEach(b => b.style.background="#ffe3e3");
+      btn.style.background="#f4b6b6";
+    };
+
+    optionsDiv.appendChild(btn);
+  });
+
+  updateProgress();
+}
+
+function nextQuestion(){
+  if(selected === null){
+    alert("Please select an option");
+    return;
+  }
+
+  score += selected;
+  selected = null;
+  current++;
+
+  if(current < quiz.length){
+    loadQuestion();
+  } else {
+    showResult();
+  }
+}
+
+function updateProgress(){
+  const percent = ((current)/quiz.length)*100;
+  document.getElementById("progress").style.width = percent + "%";
+}
+
+function showResult(){
+  let result = "";
+  let suggestion = "";
+
+  if(score <= 2){
+    result = "The child shows stable emotional and behavioral patterns.";
+    suggestion = "Continue providing a supportive and nurturing environment.";
+  } 
+  else if(score <= 4){
+    result = "The child may need moderate emotional support.";
+    suggestion = "Encourage open communication and observe behavioral patterns.";
+  } 
+  else {
+    result = "The child may benefit from additional attention and guidance.";
+    suggestion = "Consider structured support and consulting a professional if needed.";
+  }
+
+  localStorage.setItem("mindbloomResult", result);
+
+  document.querySelector(".quiz-container").innerHTML = `
+    <h2>Assessment Result</h2>
+    <div class="result">${result}</div>
+    <div class="suggestion">${suggestion}</div>
+    <button class="next-btn" onclick="location.reload()">Retake Quiz</button>
+  `;
+}
+
+loadQuestion();
+</script>
+
+</body>
+</html> -->
+
+
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Development Check-In</title>
+    <style>
+        :root {
+            --baby-pink: #fce4ec;
+            --soft-pink: #f8bbd0;
+            --deep-pink: #f06292;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--baby-pink);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .quiz-container {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(240, 98, 146, 0.2);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        h2 { color: var(--deep-pink); margin-bottom: 20px; }
+
+        .question {
+            text-align: left;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-bottom: 1px solid var(--baby-pink);
+        }
+
+        .options {
+            display: flex;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        button {
+            background-color: var(--soft-pink);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover { background-color: var(--deep-pink); }
+
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+            font-weight: bold;
+        }
+
+        .alert { background: #ffebee; color: #c62828; }
+        .fine { background: #e8f5e9; color: #2e7d32; }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h2>Quick Milestone Check</h2>
+    <p>Answer 'Yes' or 'No' for the child:</p>
+
+    <div id="quiz-content">
+        <div class="question">
+            1. Does the child make eye contact?
+            <div class="options">
+                <input type="radio" name="q1" value="0"> Yes
+                <input type="radio" name="q1" value="1"> No
+            </div>
+        </div>
+
+        <div class="question">
+            2. Do they respond to their name?
+            <div class="options">
+                <input type="radio" name="q2" value="0"> Yes
+                <input type="radio" name="q2" value="1"> No
+            </div>
+        </div>
+
+        <div class="question">
+            3. Are they constantly "on the go"?
+            <div class="options">
+                <input type="radio" name="q3" value="1"> Yes
+                <input type="radio" name="q3" value="0"> No
+            </div>
+        </div>
+
+        <button onclick="checkResults()">Show Result</button>
+    </div>
+
+    <div id="result"></div>
+</div>
+
+<script>
+    function checkResults() {
+        let score = 0;
+        const questions = document.querySelectorAll('input[type="radio"]:checked');
+        
+        if (questions.length < 3) {
+            alert("Please answer all questions!");
+            return;
+        }
+
+        questions.forEach(q => {
+            score += parseInt(q.value);
+        });
+
+        const resultDiv = document.getElementById('result');
+        resultDiv.style.display = 'block';
+
+        if (score >= 2) {
+            resultDiv.className = 'alert';
+            resultDiv.innerHTML = "Recommendation: It might be helpful to consult a pediatrician for a formal screening.";
+        } else {
+            resultDiv.className = 'fine';
+            resultDiv.innerHTML = "Result: Development seems to be on track! Keep monitoring.";
+        }
+    }
+</script>
+
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -177,4 +534,4 @@
 </script>
 
 </body>
-</html>
+</html> -->
