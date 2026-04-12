@@ -14,6 +14,10 @@ box-sizing:border-box;
 font-family:'Segoe UI',sans-serif;
 }
 
+html{
+scroll-behavior:smooth;
+}
+
 body{
 background:#fff1f1;
 }
@@ -41,13 +45,13 @@ display:flex;
 gap:25px;
 }
 
-.nav ul li{
-cursor:pointer;
+.nav ul li a{
+text-decoration:none;
 color:#7a1f1f;
 font-weight:500;
 }
 
-.nav ul li:hover{
+.nav ul li a:hover{
 color:white;
 }
 
@@ -98,8 +102,6 @@ margin-top:15px;
 font-style:italic;
 font-size:20px;
 }
-
-/* NEW BUTTON */
 
 .about-btn{
 margin-top:30px;
@@ -152,7 +154,7 @@ background:#f4b6b6;
 cursor:pointer;
 }
 
-/* INFO SECTION */
+/* INFO */
 
 .info{
 padding:60px;
@@ -171,7 +173,7 @@ margin:auto;
 line-height:1.7;
 }
 
-/* IMPORTANCE CARDS */
+/* CARDS */
 
 .importance{
 padding:60px;
@@ -252,7 +254,7 @@ margin-bottom:8px;
 }
 
 .footer-links a{
-color:#ddd;
+color:#7a1f1f;
 text-decoration:none;
 }
 
@@ -262,7 +264,7 @@ color:white;
 
 .footer-bottom{
 text-align:center;
-border-top:1px solid rgba(255,255,255,0.2);
+border-top:1px solid rgba(0,0,0,0.1);
 margin-top:20px;
 padding-top:10px;
 }
@@ -276,35 +278,28 @@ padding-top:10px;
 <div class="nav">
 <div class="logo">MindBloom 🌸</div>
 <ul>
-<li><a href="#">Home</a></li>
-<li><a href="#">Quiz</a></li>
-<li><a href="#">Contact</a></li>
+<li><a href="#home">Home</a></li>
+<li><a href="#quiz">Quiz</a></li>
+<li><a href="#contact">Contact</a></li>
 <li><a href="#">Login</a></li>
 <li><a href="#">Signup</a></li>
 </ul>
 </div>
 
 <!-- HERO -->
-
-<div class="hero">
+<div class="hero" id="home">
 <div class="hero-content">
-
 <h1>Understanding Little Minds</h1>
-
 <p>Helping children grow emotionally, mentally & happily</p>
-
 <div class="slogan">
 "Nurturing minds today for a healthier tomorrow"
 </div>
-
 <button class="about-btn">What is MindBloom</button>
-
 </div>
 </div>
 
 <!-- QUIZ -->
-
-<div class="quiz-section">
+<div class="quiz-section" id="quiz">
 <div class="quiz-card">
 <h2>Child Emotion Quiz</h2>
 <p>Take a quick quiz to understand possible early behavioral signs in children.</p>
@@ -312,82 +307,58 @@ padding-top:10px;
 </div>
 </div>
 
-<!-- INFORMATION -->
-
+<!-- INFO -->
 <div class="info">
 <h2>Why Child Psychology Matters</h2>
 <p>
 Child psychology studies how children think, feel, and behave as they grow.
 Understanding emotional and cognitive development helps parents and teachers
-support children during their most important learning years. Early awareness
-can help identify challenges like attention difficulties, emotional struggles,
-or social interaction issues so children can receive guidance and support.
+support children during their most important learning years.
 </p>
 </div>
 
-<!-- IMPORTANCE -->
-
+<!-- CARDS -->
 <div class="importance">
 <div class="cards">
 
 <div class="card">
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAHCOlvzqEYyJVD6cT2DwRDN1f7LCIoZehiA&s">
 <h3>Emotional Development</h3>
-<p>
-Children learn how to manage emotions, express feelings,
-and build confidence.
-</p>
+<p>Children learn to manage emotions and build confidence.</p>
 </div>
 
 <div class="card">
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Walter_de_Maria_Vertikaler_Erdkilometer.jpg/500px-Walter_de_Maria_Vertikaler_Erdkilometer.jpg">
 <h3>Social Skills</h3>
-<p>
-Understanding child behavior helps build friendships,
-communication skills, and empathy.
-</p>
+<p>Build friendships, communication, and empathy.</p>
 </div>
 
 </div>
 </div>
 
 <!-- AWARENESS -->
-
-<div class="awareness">
+<div class="awareness" id="contact">
 <h2>Creating Awareness</h2>
 <p>
-Early awareness of child behavior helps families notice patterns
-in attention, communication, and emotional responses.
-Recognizing these signs early allows parents to guide children
-towards healthy development and seek professional help if needed.
-Every child develops differently, and support can make a big difference.
+Early awareness helps parents guide children toward healthy development.
 </p>
 </div>
 
 <!-- FOOTER -->
-
 <footer class="footer">
 <div class="footer-container">
 
 <div>
 <h3>MindBloom</h3>
-<p>
-Supporting parents and educators in understanding
-children’s emotional and mental development.
-</p>
+<p>Supporting parents and educators in understanding children’s development.</p>
 </div>
 
 <div class="footer-links">
 <h4>Quick Links</h4>
 <ul>
-<li"><a href="#">Home</a></li>
-<li><a href="#">Quiz</a></li>
-<li><a href="#">Resources</a></li>
-<li><a href="#">Contact</a></li>
-<li><a href="#">Faq</a></li>
-<li><a href="#">privacy</a></li>
-<li><a href="#">profile</a></li>
-<li><a href="#">Service</a></li>
+<li><a href="#home">Home</a></li>
+<li><a href="#quiz">Quiz</a></li>
+<li><a href="#contact">Contact</a></li>
 </ul>
 </div>
 
