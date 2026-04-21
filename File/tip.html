@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> — Child Development</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Pacifico&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pk1: #FFF0F5; --pk2: #FFD6E7; --pk3: #FFB3CC; --pk4: #FF8AAE; --pk5: #E05C8A;
+      --bl1: #EEF6FF; --bl2: #C8E2FF; --bl3: #A0CCFF; --bl4: #5EA8F5; --bl5: #2B7BE0;
+      --gr: #E8F8EE; --gr2: #5DBE85;
+      --text: #3D2C4E; --muted: #7A6B8A;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, #FFF0F5 0%, #EEF6FF 50%, #FFF0F5 100%);
+      min-height: 100vh;
+      color: var(--text);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #FFD6E7, #C8E2FF);
+      padding: 3.5rem 2rem 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -50px; left: -50px;
+      width: 200px; height: 200px;
+      background: rgba(255,255,255,.4); border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -70px; right: -40px;
+      width: 240px; height: 240px;
+      background: rgba(255,255,255,.3); border-radius: 50%;
+    }
+    .hero h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.8rem;
+      color: var(--pk5);
+      text-shadow: 2px 3px 0 rgba(255,255,255,.6);
+      position: relative; z-index: 1;
+    }
+    .hero p {
+      font-size: 1.1rem; color: var(--text);
+      margin: .8rem auto 0; max-width: 580px;
+      position: relative; z-index: 1;
+    }
+    .bubbles {
+      display: flex; gap: 1rem; justify-content: center;
+      margin-top: 1.8rem; flex-wrap: wrap;
+      position: relative; z-index: 1;
+    }
+    .bubble {
+      background: white; border-radius: 50px;
+      padding: .5rem 1.2rem; font-size: .85rem; font-weight: 700;
+      cursor: pointer; border: 2.5px solid transparent; transition: all .2s;
+    }
+    .bubble.pk { border-color: var(--pk4); color: var(--pk5); }
+    .bubble.bl { border-color: var(--bl4); color: var(--bl5); }
+    .bubble.pk:hover { background: var(--pk3); color: white; }
+    .bubble.bl:hover { background: var(--bl3); color: white; }
+
+    /* ── NAV ── */
+    nav {
+      display: flex; gap: .5rem; justify-content: center;
+      padding: .9rem 1rem; background: white; flex-wrap: wrap;
+      box-shadow: 0 2px 16px rgba(0,0,0,.08);
+      position: sticky; top: 0; z-index: 100;
+    }
+    nav button {
+      background: none; border: none;
+      padding: .5rem 1.2rem; border-radius: 50px;
+      font-family: 'Nunito', sans-serif; font-size: .9rem; font-weight: 700;
+      cursor: pointer; transition: all .2s; color: var(--muted);
+    }
+    nav button:hover { background: var(--pk2); color: var(--pk5); }
+    nav button.active {
+      background: linear-gradient(135deg, var(--pk3), var(--bl3)); color: white;
+    }
+
+    /* ── SECTIONS ── */
+    .section { display: none; padding: 2.5rem 1.5rem; max-width: 920px; margin: 0 auto; }
+    .section.show { display: block; }
+    .sec-title {
+      font-family: 'Pacifico', cursive; font-size: 1.7rem;
+      color: var(--pk5); margin-bottom: 1.5rem; text-align: center;
+    }
+
+    /* ── MILESTONES ── */
+    .milestone-row {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1rem 1.2rem; background: white; border-radius: 18px;
+      margin-bottom: .8rem; box-shadow: 0 2px 12px rgba(0,0,0,.06);
+      transition: transform .15s;
+    }
+    .milestone-row:hover { transform: translateY(-2px); }
+    .m-age {
+      background: linear-gradient(135deg, var(--pk3), var(--bl3));
+      color: white; border-radius: 12px;
+      padding: .45rem .9rem; font-weight: 800; font-size: .8rem;
+      min-width: 75px; text-align: center; white-space: nowrap;
+    }
+    .m-body h4 { font-size: .95rem; font-weight: 800; color: var(--text); }
+    .m-body p  { font-size: .85rem; color: var(--muted); margin-top: .3rem; line-height: 1.6; }
+
+    /* ── DOMAINS ── */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+    .card {
+      background: white; border-radius: 20px;
+      padding: 1.3rem; box-shadow: 0 4px 20px rgba(0,0,0,.07);
+      border: 2px solid var(--pk2); transition: transform .15s;
+    }
+    .card:hover { transform: translateY(-3px); }
+    .card.blue { border-color: var(--bl2); }
+    .card h3 { font-size: 1rem; font-weight: 800; color: var(--pk5); margin-bottom: .5rem; }
+    .card.blue h3 { color: var(--bl5); }
+    .card p { font-size: .87rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── DISORDERS ── */
+    .disorder-card {
+      background: white; border-radius: 20px;
+      padding: 1.3rem 1.5rem; margin-bottom: .9rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,.07);
+      cursor: pointer; border: 2px solid var(--bl2); transition: all .2s;
+    }
+    .disorder-card:hover { border-color: var(--pk4); transform: translateY(-2px); }
+    .disorder-card h3 {
+      font-size: 1rem; font-weight: 800; color: var(--bl5);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .disorder-card h3 .cat-badge {
+      font-size: .7rem; background: var(--bl1); color: var(--bl5);
+      padding: .25rem .65rem; border-radius: 20px; font-weight: 700;
+    }
+    .disorder-body { display: none; margin-top: .9rem; padding-top: .9rem; border-top: 1px dashed var(--bl2); }
+    .disorder-body.open { display: block; }
+    .disorder-body p { font-size: .86rem; color: var(--muted); margin-bottom: .8rem; line-height: 1.6; }
+    .dis-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .dis-col-title { font-size: .82rem; font-weight: 800; margin-bottom: .5rem; }
+    .dis-col-title.pk { color: var(--pk5); }
+    .dis-col-title.bl { color: var(--bl5); }
+    .dis-tag {
+      display: block; border-radius: 10px;
+      padding: .3rem .7rem; font-size: .79rem; font-weight: 700; margin-bottom: .35rem;
+    }
+    .dis-tag.pk { background: var(--pk1); border: 1px solid var(--pk3); color: var(--pk5); }
+    .dis-tag.bl { background: var(--bl1); border: 1px solid var(--bl3); color: var(--bl5); }
+
+    /* ── TIPS ── */
+    .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; }
+    .tip-card {
+      background: white; border-radius: 18px; padding: 1.2rem;
+      border-left: 4px solid var(--pk4);
+      box-shadow: 0 2px 14px rgba(0,0,0,.06);
+      transition: transform .15s;
+    }
+    .tip-card:hover { transform: translateY(-2px); }
+    .tip-card.bl { border-left-color: var(--bl4); }
+    .tip-card h4 { font-size: .92rem; font-weight: 800; color: var(--pk5); margin-bottom: .4rem; }
+    .tip-card.bl h4 { color: var(--bl5); }
+    .tip-card p { font-size: .83rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── QUIZ ── */
+    .quiz-wrap {
+      background: white; border-radius: 24px;
+      padding: 2rem 2.5rem; box-shadow: 0 4px 24px rgba(0,0,0,.08);
+    }
+    .progress-bar {
+      width: 100%; height: 9px; background: var(--pk2);
+      border-radius: 10px; margin-bottom: 1.5rem; overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--pk4), var(--bl4));
+      border-radius: 10px; transition: width .4s ease;
+    }
+    .q-num { font-size: .8rem; color: var(--muted); font-weight: 700; margin-bottom: .3rem; }
+    .q-text { font-size: 1.07rem; font-weight: 800; color: var(--text); margin-bottom: 1.3rem; line-height: 1.5; }
+    .q-opts { display: flex; flex-direction: column; gap: .65rem; }
+    .q-opt {
+      padding: .75rem 1.1rem; border-radius: 14px;
+      border: 2px solid var(--pk2); background: var(--pk1);
+      cursor: pointer; font-size: .9rem; font-weight: 600;
+      color: var(--text); transition: all .2s; text-align: left;
+      font-family: 'Nunito', sans-serif;
+    }
+    .q-opt:hover:not([disabled]) { border-color: var(--pk4); background: var(--pk2); }
+    .q-opt.correct { border-color: var(--gr2); background: var(--gr); color: #1a6640; }
+    .q-opt.wrong   { border-color: #E05C5C; background: #fff0f0; color: #a33; }
+    .q-nav {
+      display: flex; justify-content: space-between;
+      align-items: center; margin-top: 1.5rem; flex-wrap: wrap; gap: .5rem;
+    }
+    .btn-pk {
+      background: linear-gradient(135deg, var(--pk4), var(--pk5));
+      color: white; border: none; padding: .65rem 1.6rem; border-radius: 50px;
+      font-family: 'Nunito', sans-serif; font-weight: 800; font-size: .9rem;
+      cursor: pointer; transition: all .2s;
+    }
+    .btn-pk:hover { opacity: .9; transform: scale(1.02); }
+    .btn-bl {
+      background: linear-gradient(135deg, var(--bl4), var(--bl5));
+      color: white; border: none; padding: .65rem 1.6rem; border-radius: 50px;
+      font-family: 'Nunito', sans-serif; font-weight: 800; font-size: .9rem;
+      cursor: pointer; transition: all .2s;
+    }
+    .btn-bl:hover { opacity: .9; transform: scale(1.02); }
+    .feedback {
+      font-size: .86rem; padding: .55rem .9rem;
+      border-radius: 10px; margin-top: .6rem; font-weight: 700; display: none;
+    }
+    .feedback.show { display: block; }
+    .feedback.ok { background: var(--gr); color: #1a6640; }
+    .feedback.no { background: #fff0f0; color: #a33; }
+    .score-board { text-align: center; padding: 2rem 1rem; }
+    .score-big { font-family: 'Pacifico', cursive; font-size: 3.5rem; color: var(--pk5); }
+    .score-msg { font-size: 1.05rem; color: var(--muted); margin-top: .6rem; }
+    .score-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--pk2), var(--bl2));
+      border-radius: 50px; padding: .5rem 1.8rem;
+      font-weight: 800; color: var(--text); margin-top: 1rem; font-size: 1rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 2rem; font-size: .82rem;
+      color: var(--muted); background: white;
+      margin-top: 3rem; border-top: 1px dashed var(--pk2);
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      .dis-cols { grid-template-columns: 1fr; }
+      .quiz-wrap { padding: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Bloom Tots</h1>
+  <p>Your caring guide to child development — milestones, disorders, tips &amp; interactive learning</p>
+  <div class="bubbles">
+    <span class="bubble pk">0–12 months</span>
+    <span class="bubble bl">1–3 years</span>
+    <span class="bubble pk">3–6 years</span>
+    <span class="bubble bl">6–12 years</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <button onclick="show('milestones')" id="nb-milestones">Milestones</button>
+  <button onclick="show('domains')"    id="nb-domains">Domains</button>
+  <button onclick="show('disorders')"  id="nb-disorders">Disorders</button>
+  <button onclick="show('tips')"       id="nb-tips">Tips for Parents</button>
+  <button onclick="show('quiz')"       id="nb-quiz">Quiz</button>
+</nav>
+
+<!-- SECTIONS -->
+<div id="sec-milestones" class="section show">
+  <p class="sec-title">Developmental Milestones</p>
+  <div id="ms-content"></div>
+</div>
+
+<div id="sec-domains" class="section">
+  <p class="sec-title">Developmental Domains</p>
+  <div class="card-grid" id="domains-content"></div>
+</div>
+
+<div id="sec-disorders" class="section">
+  <p class="sec-title">Childhood Disorders</p>
+  <p style="text-align:center;color:var(--muted);font-size:.9rem;margin-bottom:1.3rem">
+    Click any card to expand details, signs &amp; support strategies
+  </p>
+  <div id="disorders-content"></div>
+</div>
+
+<div id="sec-tips" class="section">
+  <p class="sec-title">Tips for Parents &amp; Caregivers</p>
+  <div class="tips-grid" id="tips-content"></div>
+</div>
+
+<div id="sec-quiz" class="section">
+  <p class="sec-title">Knowledge Quiz</p>
+  <div class="quiz-wrap">
+    <div id="quiz-main"></div>
+  </div>
+</div>
+
+<footer>
+  Little Wonders &copy; 2025 &nbsp;|&nbsp; Always consult a qualified paediatrician or specialist for personalised advice.
+</footer>
+
+<script>
+/* ── DATA ── */
+const milestones = [
+  { age:"0–3 mo",  title:"Newborn Wonders",     desc:"Tracks moving objects with eyes, responds to sounds, social smile, briefly lifts head during tummy time." },
+  { age:"4–6 mo",  title:"Curious Explorer",    desc:"Rolls front-to-back, reaches and grasps toys, babbles and laughs, begins recognising familiar faces." },
+  { age:"7–9 mo",  title:"On The Move",          desc:"Sits without support, starts crawling, responds to own name, shows stranger anxiety, imitates sounds." },
+  { age:"10–12 mo",title:"First Steps Ahead",   desc:"Pulls to stand, may walk with support, says first words ('mama','dada'), points to objects of interest." },
+  { age:"1–2 yrs", title:"Little Talker",        desc:"Walks independently, vocabulary grows to 50+ words, feeds self with spoon, enjoys parallel play." },
+  { age:"2–3 yrs", title:"Imaginative Play",     desc:"Runs and climbs, uses 2–4 word phrases, follows 2-step instructions, engages in pretend play." },
+  { age:"3–5 yrs", title:"Social Butterfly",     desc:"Rides tricycle, forms 5–6 word sentences, asks 'why', plays cooperatively, dresses independently." },
+  { age:"6–8 yrs", title:"School Ready",         desc:"Reads simple text, logical thinking emerges, deep friendships form, fine motor skills strengthen." },
+  { age:"9–12 yrs",title:"Growing Independent",  desc:"Abstract thinking develops, complex problem-solving, peer relationships become central, puberty begins." },
+];
+
+const domains = [
+  { c:"",     title:"Physical / Motor",          desc:"Gross motor (walking, running, jumping) and fine motor (holding pencil, buttoning) skills. Depends on nutrition, activity and environment." },
+  { c:"blue", title:"Cognitive",                 desc:"Thinking, problem-solving, memory and attention. Children learn through play, exploration, imitation and formal education." },
+  { c:"",     title:"Language & Communication",  desc:"Listening, understanding, speaking, reading and writing. Develops through interaction, reading aloud and rich vocabulary exposure." },
+  { c:"blue", title:"Social & Emotional",        desc:"Forming attachments, empathy, self-regulation and peer relationships. Key foundation for mental health and wellbeing throughout life." },
+  { c:"",     title:"Adaptive / Self-care",      desc:"Daily living skills: dressing, toileting, eating independently. Supports autonomy and confidence in school and social settings." },
+  { c:"blue", title:"Sensory Processing",        desc:"How the brain interprets touch, sound, sight, taste, smell and movement. Affects attention, behaviour and learning when dysregulated." },
+];
+
+const disorders = [
+  {
+    name:"Autism Spectrum Disorder (ASD)", cat:"Neurodevelopmental",
+    desc:"A spectrum condition affecting social communication, behaviour and sensory processing. Presents very differently across individuals.",
+    signs:["Delayed speech or unusual language","Difficulty with eye contact","Repetitive behaviours or routines","Intense focus on specific interests","Sensory sensitivities (sound, texture, light)"],
+    support:["Early behavioural therapy (ABA)","Speech & language therapy","Structured routines & visual schedules","Occupational therapy","Inclusive education support"]
+  },
+  {
+    name:"ADHD", cat:"Attention",
+    desc:"Attention-Deficit/Hyperactivity Disorder affects focus, impulse control and activity level. Three subtypes: inattentive, hyperactive-impulsive, and combined.",
+    signs:["Difficulty sustaining attention on tasks","Impulsivity and frequent interrupting","Hyperactivity or constant movement","Forgetfulness and losing items","Poor time management"],
+    support:["Behavioural therapy","Medication where clinically appropriate","Structured, predictable environment","Frequent breaks and movement","Positive reinforcement strategies"]
+  },
+  {
+    name:"Dyslexia", cat:"Learning",
+    desc:"A language-based learning difficulty primarily affecting reading, spelling and phonological processing. Not related to intelligence.",
+    signs:["Reading below expected grade level","Difficulty sounding out words","Confusing similar letters (b/d, p/q)","Slow and laboured reading","Trouble with rhyming or word patterns"],
+    support:["Orton-Gillingham based instruction","Multisensory reading programmes","Extra time on assessments","Audiobooks and text-to-speech","Assistive technology tools"]
+  },
+  {
+    name:"Dyspraxia / DCD", cat:"Motor",
+    desc:"Developmental Coordination Disorder affects motor planning and coordination, impacting many daily tasks including writing and self-care.",
+    signs:["Clumsy or uncoordinated movements","Significant difficulty with handwriting","Trouble with buttons, laces, zippers","Poor balance and spatial awareness","Avoidance of physical activities"],
+    support:["Occupational therapy (OT)","Physiotherapy for gross motor skills","Adapted PE and sports programmes","Handwriting intervention programmes","Breaking tasks into small steps"]
+  },
+  {
+    name:"Anxiety Disorders", cat:"Emotional",
+    desc:"Includes separation anxiety, generalised anxiety and specific phobias — among the most common childhood mental health concerns. Often underdiagnosed.",
+    signs:["Excessive worry about everyday events","School refusal or avoidance","Physical complaints (headaches, stomach aches)","Sleep difficulties or nightmares","Excessive clinging to caregivers"],
+    support:["Cognitive Behavioural Therapy (CBT)","Gradual exposure therapy","Relaxation and mindfulness techniques","Consistent and predictable routines","Family-based therapy approaches"]
+  },
+  {
+    name:"Childhood Depression", cat:"Emotional",
+    desc:"More than sadness — persistent low mood, loss of interest and functional impairment lasting 2+ weeks. Often presents as irritability in children.",
+    signs:["Persistent sadness or irritability","Withdrawal from friends and activities","Loss of interest in previously enjoyed things","Changes in sleep or appetite","Low energy and poor self-worth"],
+    support:["CBT or play therapy","Consistent family and school support","School counsellor involvement","Medication in severe adolescent cases","Regular physical activity"]
+  },
+  {
+    name:"Speech & Language Delays", cat:"Communication",
+    desc:"Delayed or disordered development of expressive and/or receptive language beyond expected milestones. Early intervention yields best outcomes.",
+    signs:["Fewer words than same-age peers","Difficulty constructing sentences","Hard to understand speech sounds","Trouble following verbal instructions","Limited gesturing or pointing"],
+    support:["Speech-language pathology sessions","Parent-led language stimulation strategies","Augmentative and alternative communication","Early intervention programmes","Rich, responsive language environments"]
+  },
+  {
+    name:"Intellectual Disability", cat:"Cognitive",
+    desc:"Significantly below-average intellectual functioning with limitations in adaptive behaviour, present before age 18. Ranges from mild to profound.",
+    signs:["Delayed developmental milestones","Difficulty with reasoning and problem-solving","Limited self-care and adaptive skills","Slower learning pace across domains","Challenges with communication"],
+    support:["Individualised Education Plans (IEP)","Life skills and vocational training","Community inclusion programmes","Supportive and enriched family environment","Specialised speech, OT and PT therapies"]
+  },
+  {
+    name:"Sensory Processing Disorder", cat:"Sensory",
+    desc:"Difficulty regulating responses to sensory input — children may be over-sensitive (hypersensitive) or under-sensitive (hyposensitive) to stimuli.",
+    signs:["Extreme distress with textures, sounds or lights","Seeking intense sensory experiences","Avoiding crowds or noisy environments","Meltdowns in busy settings","Unusual tolerance to pain or temperature"],
+    support:["Sensory integration therapy (OT)","Personalised sensory diets and tools","Calm-down corners in school and home","Environmental modifications","Educator and caregiver awareness training"]
+  },
+  {
+    name:"Selective Mutism", cat:"Anxiety / Communication",
+    desc:"Consistent failure to speak in specific social situations despite speaking confidently in others. Causes significant impairment in school and social life.",
+    signs:["Speaks freely at home but not at school","Freezing or blank expression in social settings","Communicates through gestures or writing instead","May appear extremely shy or withdrawn","Physical tension in speaking situations"],
+    support:["Gradual exposure combined with CBT","Low-pressure communication opportunities","Strong school-home collaboration","Play-based and child-led therapy","Anxiety management and social skills work"]
+  },
+];
+
+const tips = [
+  { c:"",   title:"Read Every Day",          txt:"Even 10 minutes of reading aloud daily builds vocabulary, imagination and essential early literacy skills." },
+  { c:"bl", title:"Follow The Child's Lead", txt:"Let children direct play sometimes — it builds autonomy, creativity and genuine confidence." },
+  { c:"",   title:"Consistent Routines",     txt:"Predictable daily routines reduce anxiety and help young children develop healthy self-regulation." },
+  { c:"bl", title:"Praise Effort, Not Talent",txt:"'You worked so hard!' builds a growth mindset more powerfully than 'You're so smart!'" },
+  { c:"",   title:"Limit Screen Time",       txt:"Under 2: avoid screens. Ages 2–5: max 1 hour/day of quality content, ideally with a caregiver." },
+  { c:"bl", title:"Outdoor Play Matters",    txt:"Nature play supports physical health, attention span, stress regulation and creative thinking." },
+  { c:"",   title:"Name Emotions",           txt:"Help children label feelings ('I can see you're frustrated') to build emotional intelligence and vocabulary." },
+  { c:"bl", title:"Nutrition Is Development",txt:"Omega-3s, iron and zinc support brain development. Minimise excess sugar during formative years." },
+  { c:"",   title:"Trust Your Instincts",    txt:"If something seems 'off' with your child's development, talk to your paediatrician early. Early support changes outcomes." },
+  { c:"bl", title:"Connection Before Correction", txt:"Children behave better when they feel understood. Lead with empathy, then set the boundary." },
+];
+
+const questions = [
+  { q:"At what age do most children say their first words?",
+    opts:["3–4 months","6–8 months","10–14 months","18–24 months"], ans:2,
+    exp:"Most children produce their first meaningful words around 10–14 months of age." },
+  { q:"Which developmental domain involves skills like dressing and self-feeding?",
+    opts:["Cognitive","Adaptive / Self-care","Sensory","Language"], ans:1,
+    exp:"Adaptive/self-care skills include daily living tasks like dressing, feeding and toileting." },
+  { q:"What is the recommended daily screen time for a 3-year-old?",
+    opts:["No limit","30 minutes","1 hour","3 hours"], ans:2,
+    exp:"WHO and AAP guidelines recommend a maximum of 1 hour per day for children aged 2–5." },
+  { q:"Which therapy is most evidence-based for Autism Spectrum Disorder?",
+    opts:["Play therapy only","Applied Behaviour Analysis (ABA)","Hypnotherapy","Vision therapy"], ans:1,
+    exp:"ABA is one of the most extensively researched interventions for improving skills in children with ASD." },
+  { q:"A child who struggles to read and confuses 'b' and 'd' may be showing signs of:",
+    opts:["ADHD","Dyspraxia","Dyslexia","Selective Mutism"], ans:2,
+    exp:"Confusing visually similar letters and difficulty with phonics are classic markers of dyslexia." },
+  { q:"What is 'parallel play'?",
+    opts:["Playing with adults only","Playing alone beside other children without direct interaction","Sharing toys cooperatively","Playing competitive team games"], ans:1,
+    exp:"Parallel play (around ages 2–3) is when children play near each other but independently — a normal developmental stage." },
+  { q:"Which sign is most associated with Sensory Processing Disorder?",
+    opts:["Frequent nosebleeds","Extreme distress with certain textures or sounds","Poor reading ability","Hyperactivity only"], ans:1,
+    exp:"Over- or under-sensitivity to sensory input is the hallmark characteristic of Sensory Processing Disorder." },
+  { q:"What does 'IEP' stand for in special education?",
+    opts:["Individual Education Plan","Integrated Early Programme","Intensive Educational Protocol","Initial Evaluation Procedure"], ans:0,
+    exp:"An IEP (Individual Education Plan) is a customised learning plan created for children with special educational needs." },
+  { q:"By age 3, most children should have a vocabulary of approximately:",
+    opts:["10 words","50 words","200–300 words","1,000+ words"], ans:2,
+    exp:"By age 3, most children have around 200–300 words and regularly use 3–4 word sentences." },
+  { q:"Which approach best supports emotional development in young children?",
+    opts:["Ignoring minor tantrums only","Labelling and validating feelings","Discouraging all emotional expression","Rewarding only positive emotions"], ans:1,
+    exp:"Naming and validating children's emotions builds emotional intelligence and healthy self-regulation." },
+];
+
+/* ── RENDER FUNCTIONS ── */
+function renderMilestones() {
+  document.getElementById('ms-content').innerHTML =
+    milestones.map(m => `
+      <div class="milestone-row">
+        <div class="m-age">${m.age}</div>
+        <div class="m-body">
+          <h4>${m.title}</h4>
+          <p>${m.desc}</p>
+        </div>
+      </div>`).join('');
+}
+
+function renderDomains() {
+  document.getElementById('domains-content').innerHTML =
+    domains.map(d => `
+      <div class="card ${d.c}">
+        <h3>${d.title}</h3>
+        <p>${d.desc}</p>
+      </div>`).join('');
+}
+
+function renderDisorders() {
+  document.getElementById('disorders-content').innerHTML =
+    disorders.map((d, i) => `
+      <div class="disorder-card" onclick="toggleDis(${i})">
+        <h3>${d.name} <span class="cat-badge">${d.cat}</span></h3>
+        <div class="disorder-body" id="dis-${i}">
+          <p>${d.desc}</p>
+          <div class="dis-cols">
+            <div>
+              <p class="dis-col-title pk">Common Signs</p>
+              ${d.signs.map(s => `<span class="dis-tag pk">${s}</span>`).join('')}
+            </div>
+            <div>
+              <p class="dis-col-title bl">Support Strategies</p>
+              ${d.support.map(s => `<span class="dis-tag bl">${s}</span>`).join('')}
+            </div>
+          </div>
+        </div>
+      </div>`).join('');
+}
+
+function renderTips() {
+  document.getElementById('tips-content').innerHTML =
+    tips.map(t => `
+      <div class="tip-card ${t.c}">
+        <h4>${t.title}</h4>
+        <p>${t.txt}</p>
+      </div>`).join('');
+}
+
+/* ── QUIZ ── */
+let cur = 0, score = 0;
+
+function renderQuiz() {
+  const qz = document.getElementById('quiz-main');
+  if (cur >= questions.length) {
+    const pct = Math.round((score / questions.length) * 100);
+    const msg =
+      pct >= 80 ? "Excellent! You really know your child development!" :
+      pct >= 50 ? "Good effort! Review a few topics to strengthen your knowledge." :
+      "Keep exploring — every section has helpful info to revisit!";
+    qz.innerHTML = `
+      <div class="score-board">
+        <div class="score-big">${score}/${questions.length}</div>
+        <div class="score-msg">${msg}</div>
+        <div class="score-badge">Score: ${pct}%</div>
+        <div style="margin-top:1.8rem">
+          <button class="btn-bl" onclick="cur=0;score=0;renderQuiz()">Try Again</button>
+        </div>
+      </div>`;
+    return;
+  }
+  const q = questions[cur];
+  const pct = Math.round((cur / questions.length) * 100);
+  qz.innerHTML = `
+    <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+    <div class="q-num">Question ${cur + 1} of ${questions.length}</div>
+    <div class="q-text">${q.q}</div>
+    <div class="q-opts">
+      ${q.opts.map((o, i) => `<button class="q-opt" id="qo-${i}" onclick="answer(${i})">${o}</button>`).join('')}
+    </div>
+    <div class="feedback" id="qfb"></div>
+    <div class="q-nav">
+      <span style="font-size:.85rem;color:var(--muted)">Score so far: ${score}</span>
+      <button class="btn-pk" id="qnext" onclick="cur++;renderQuiz()" style="display:none">Next →</button>
+    </div>`;
+}
+
+function answer(idx) {
+  const q = questions[cur];
+  document.querySelectorAll('.q-opt').forEach(b => b.disabled = true);
+  document.getElementById(`qo-${idx}`).classList.add(idx === q.ans ? 'correct' : 'wrong');
+  if (idx !== q.ans) document.getElementById(`qo-${q.ans}`).classList.add('correct');
+  if (idx === q.ans) score++;
+  const fb = document.getElementById('qfb');
+  fb.className = `feedback show ${idx === q.ans ? 'ok' : 'no'}`;
+  fb.textContent = (idx === q.ans ? '✓ Correct! ' : '✗ Not quite. ') + q.exp;
+  document.getElementById('qnext').style.display = 'inline-block';
+}
+
+/* ── NAVIGATION ── */
+function show(sec) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('show'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + sec).classList.add('show');
+  document.getElementById('nb-' + sec).classList.add('active');
+}
+
+function toggleDis(i) {
+  document.getElementById('dis-' + i).classList.toggle('open');
+}
+
+/* ── INIT ── */
+renderMilestones();
+renderDomains();
+renderDisorders();
+renderTips();
+document.getElementById('nb-milestones').classList.add('active');
+renderQuiz();
+</script>
+</body>
+</html>
